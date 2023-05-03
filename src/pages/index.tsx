@@ -6,10 +6,5 @@ const stintUltra = Stint_Ultra_Condensed({
   variable: "--font-stint-ultra",
 });
 export default function Home() {
-  return (
-    <main>
-      <h1 className="font-dsf text-5xl">Tags</h1>
-      <h1 className="font-stf">Hello There</h1>
-    </main>
-  );
+  return <main></main>;
 }
