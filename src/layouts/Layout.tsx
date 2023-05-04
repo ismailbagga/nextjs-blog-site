@@ -11,7 +11,7 @@ const stintUltra = Stint_Ultra_Condensed({
 const Layout: FC<{ children: ReactNode }> = (props) => {
   return (
     <main
-      className={`${inter.variable} ${stintUltra.variable}  min-h-screen bg-slate-300 dark:text-white dark:bg-slate-950`}
+      className={`${inter.variable} ${stintUltra.variable} relative z-0  min-h-screen bg-cd-gray dark:text-white dark:bg-cd-dark`}
     >
       <Nav />
       {props.children}

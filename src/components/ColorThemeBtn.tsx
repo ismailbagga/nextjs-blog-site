@@ -13,7 +13,7 @@ const ColorThemeBtn: FC<{ className?: string }> = (props) => {
     if (doesPreferDarkTheme.matches) onThemeChanged(false);
     else onThemeChanged(true);
   }, []);
-  const heightAndWidth = 25;
+  const heightAndWidth = 36;
   const onThemeChanged = (theme: boolean) => {
     console.log(theme);
 
@@ -24,9 +24,14 @@ const ColorThemeBtn: FC<{ className?: string }> = (props) => {
   return (
     <button {...props} onClick={() => onThemeChanged(!isLightTheme)}>
       {isLightTheme ? (
-        <Image src="/sunny.png" alt="sun" height={heightAndWidth} width={heightAndWidth} />
+        <Image src="/icons/sunny.png" alt="sun" height={heightAndWidth} width={heightAndWidth} />
       ) : (
-        <Image src="/half-moon.png" alt="moon" height={heightAndWidth} width={heightAndWidth} />
+        <Image
+          src="/icons/half-moon.png"
+          alt="moon"
+          height={heightAndWidth}
+          width={heightAndWidth}
+        />
       )}
     </button>
   );
