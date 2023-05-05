@@ -1,21 +1,17 @@
 import React, { FC, HTMLAttributes } from "react";
 import Image from "next/image";
-export type Tag = {
-  title: string;
-  slug: string;
-  imageName: string;
-};
-export type Tags = Tag[];
+import { Tag } from "@prisma/client";
+// export type Tag = {
+//   title: string;
+//   slug: string;
+//   imageName: string;
+// };
+// export type Tags = Tag[];
 const TagCard: FC<{ tag: Tag }> = ({ tag }) => {
   return (
     <div className="h-48   w-full flex justify-center  ">
       <div className="relative h-full  w-[20rem]  rounded-xl ">
-        <Image src={`/tags/${tag.imageName}`} fill alt={tag.title} className="rounded-xl" />
-        {/* <img
-          src={`/tags/${tag.imageName}`}
-          alt={tag.title}
-          className="w-full h-full  rounded-xl  "
-        /> */}
+        <Image src={`/tags/${tag.url}`} fill alt={tag.title} className="rounded-xl" />
         <div
           id="content"
           className="absolute flex items-center justify-center w-full h-full top-0 left-0 rounded-xl bg-black/70"

@@ -1,7 +1,8 @@
 import React, { FC, ReactNode, useState } from "react";
-import TagCard, { Tag } from "./TagCard";
+import TagCard from "./TagCard";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { Tag } from "@prisma/client";
 
 const CarouselBtn: FC<{ children: ReactNode; className: string; onClickHandler: () => void }> = (
   props

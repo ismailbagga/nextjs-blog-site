@@ -1,6 +1,7 @@
-import { Tags } from "@/components/tags/TagCard";
+import { GetStaticProps } from "next";
 import TagsCarousel from "@/components/tags/TagsCarousel";
 import { Inter, Stint_Ultra_Condensed } from "next/font/google";
+import { PrismaClient, Tag } from "@prisma/client";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const stintUltra = Stint_Ultra_Condensed({
   subsets: ["latin"],
@@ -8,48 +9,57 @@ const stintUltra = Stint_Ultra_Condensed({
   variable: "--font-stint-ultra",
 });
 
-const tags: Tags = [
-  {
-    title: "React Libary",
-    slug: "react-libary",
-    imageName: "react.png",
-  },
-  {
-    title: "Java",
-    slug: "java",
-    imageName: "java.jpg",
-  },
-  {
-    title: "Algorithmes & Data Structures",
-    slug: "algorithmes",
-    imageName: "algorithmes.webp",
-  },
-  {
-    title: "Kotlin",
-    slug: "kotlin",
-    imageName: "kotlin.webp",
-  },
-  {
-    title: "Tailwind Css",
-    slug: "tailwind-css",
-    imageName: "tailwindcss.png",
-  },
-  {
-    title: "TypeScript",
-    slug: "typeScript",
-    imageName: "typescript.webp",
-  },
-  {
-    title: "Spring Boot",
-    slug: "Spring",
-    imageName: "spring.jpg",
-  },
-];
+// const tags: Tag[] = [
+//   {
+//     title: "React Libary",
+//     slug: "react-libary",
+//     url: "react.png",
+//   },
+//   {
+//     title: "Java",
+//     slug: "java",
+//     url: "java.jpg",
+//   },
+//   {
+//     title: "Algorithmes & Data Structures",
+//     slug: "algorithmes",
+//     url: "algorithmes.webp",
+//   },
+//   {
+//     title: "Kotlin",
+//     slug: "kotlin",
+//     url: "kotlin.webp",
+//   },
+//   {
+//     title: "Tailwind Css",
+//     slug: "tailwind-css",
+//     url: "tailwindcss.png",
+//   },
+//   {
+//     title: "TypeScript",
+//     slug: "typeScript",
+//     url: "typescript.webp",
+//   },
+//   {
+//     title: "Spring Boot",
+//     slug: "Spring",
+//     imageName: "spring.jpg",
+//   },
+// ];
 
-export default function Home() {
+export const getStaticProps: GetStaticProps<{ tags: Tag[] }> = async () => {
+  const prismaInstance = new PrismaClient();
+  const tags = await prismaInstance.tag.findMany({
+    take: 16,
+  });
+
+  return { props: { tags } };
+};
+
+export default function Home(props: { tags: Tag[] }) {
   return (
     <main className="">
-      <TagsCarousel tags={tags} />
+      <TagsCarousel tags={props.tags} />
     </main>
   );
 }
