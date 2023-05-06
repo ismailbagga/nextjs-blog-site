@@ -9,7 +9,9 @@ const ColorThemeBtn: FC<{ className?: string }> = (props) => {
       onThemeChanged(JSON.parse(theme));
       return;
     }
-    const doesPreferDarkTheme = window.matchMedia("(prefers-color-scheme : dark)");
+    const doesPreferDarkTheme = window.matchMedia(
+      "(prefers-color-scheme : dark)"
+    );
     if (doesPreferDarkTheme.matches) onThemeChanged(false);
     else onThemeChanged(true);
   }, []);
@@ -18,13 +20,20 @@ const ColorThemeBtn: FC<{ className?: string }> = (props) => {
     console.log(theme);
 
     localStorage.setItem("isLightTheme", theme.toString());
-    theme ? document.body.classList.remove("dark") : document.body.classList.add("dark");
+    theme
+      ? document.body.classList.remove("dark")
+      : document.body.classList.add("dark");
     setTheme(theme);
   };
   return (
     <button {...props} onClick={() => onThemeChanged(!isLightTheme)}>
       {isLightTheme ? (
-        <Image src="/icons/sunny.png" alt="sun" height={heightAndWidth} width={heightAndWidth} />
+        <Image
+          src="/icons/sunny.png"
+          alt="sun"
+          height={heightAndWidth}
+          width={heightAndWidth}
+        />
       ) : (
         <Image
           src="/icons/half-moon.png"

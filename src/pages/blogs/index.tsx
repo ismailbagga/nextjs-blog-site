@@ -1,7 +1,9 @@
 import { GetStaticProps } from "next";
 import TagsCarousel from "@/components/tags/TagsCarousel";
 import { Inter, Stint_Ultra_Condensed } from "next/font/google";
-import { PrismaClient, Tag } from "@prisma/client";
+import { Blog, PrismaClient, Tag, TagsForArticle } from "@prisma/client";
+import BlogsList from "@/components/blogs/BlogsList";
+import { json } from "stream/consumers";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const stintUltra = Stint_Ultra_Condensed({
   subsets: ["latin"],
@@ -47,19 +49,46 @@ const stintUltra = Stint_Ultra_Condensed({
 //   },
 // ];
 
-export const getStaticProps: GetStaticProps<{ tags: Tag[] }> = async () => {
+export type CardBlog = Blog & {
+  TagsForArticle: (TagsForArticle & {
+    Tag: Tag;
+  })[];
+};
+export const getStaticProps: GetStaticProps<{
+  tags: Tag[];
+  blogs: CardBlog[];
+}> = async () => {
   const prismaInstance = new PrismaClient();
   const tags = await prismaInstance.tag.findMany({
     take: 16,
   });
 
-  return { props: { tags } };
+  const blogs = await prismaInstance.blog.findMany({
+    take: 6,
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      TagsForArticle: {
+        include: {
+          Tag: true,
+        },
+        where: {
+          primary: true,
+        },
+        take: 1,
+      },
+    },
+  });
+
+  return { props: { tags, blogs: JSON.parse(JSON.stringify(blogs)) } };
 };
 
-export default function Home(props: { tags: Tag[] }) {
+export default function Home(props: { tags: Tag[]; blogs: CardBlog[] }) {
   return (
     <main className="">
       <TagsCarousel tags={props.tags} />
+      <BlogsList title="Latest Blogs" blogs={props.blogs} />
     </main>
   );
 }

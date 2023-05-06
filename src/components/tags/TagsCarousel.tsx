@@ -4,12 +4,14 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Tag } from "@prisma/client";
 
-const CarouselBtn: FC<{ children: ReactNode; className: string; onClickHandler: () => void }> = (
-  props
-) => {
+const CarouselBtn: FC<{
+  children: ReactNode;
+  className: string;
+  onClickHandler: () => void;
+}> = (props) => {
   return (
     <button
-      className={`block z-50 absolute top-1/2   -translate-y-1/2 ${props.className}`}
+      className={`absolute top-1/2 z-50 block   -translate-y-1/2 ${props.className}`}
       onClick={props.onClickHandler}
     >
       {props.children}
@@ -46,7 +48,7 @@ const responsive = {
 };
 
 const customLeftArrow = (
-  <div className="absolute arrow-btn left-0  text-center py-3 px-2 cursor-pointer  bg-pink-600/95 rounded-full">
+  <div className="arrow-btn absolute left-0  cursor-pointer rounded-full bg-pink-600/95 px-2  py-3 text-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6 text-white "
@@ -65,7 +67,7 @@ const customLeftArrow = (
 );
 
 const customRightArrow = (
-  <div className="absolute arrow-btn right-0 text-center py-3 px-2 cursor-pointer bg-pink-600 rounded-full">
+  <div className="arrow-btn absolute right-0 cursor-pointer rounded-full bg-pink-600 px-2 py-3 text-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6 text-white"
@@ -90,7 +92,6 @@ const TagsCarousel: FC<{ tags: Tag[] }> = ({ tags }) => {
         customLeftArrow={customLeftArrow}
         customRightArrow={customRightArrow}
         swipeable
-        draggable
         className=""
         infinite
       >

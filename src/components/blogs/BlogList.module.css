@@ -1,0 +1,20 @@
+/* [@media(min-width:1280px)]:grid-cols-3 [@media(min-width:1582px)]:grid-cols-4    [@media(min-width:900px)]:grid-cols-2  */
+.blogs-list {
+  @apply grid-cols-1;
+}
+@media screen and (min-width: 900px) {
+  .blogs-list {
+    @apply grid-cols-2;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .blogs-list {
+    @apply grid-cols-3;
+  }
+}
+@media screen and (min-width: 1582px) {
+  .blogs-list {
+    @apply grid-cols-4;
+  }
+}

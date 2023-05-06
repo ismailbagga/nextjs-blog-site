@@ -9,14 +9,19 @@ import { Tag } from "@prisma/client";
 // export type Tags = Tag[];
 const TagCard: FC<{ tag: Tag }> = ({ tag }) => {
   return (
-    <div className="h-48   w-full flex justify-center  ">
+    <div className="flex   h-48 w-full justify-center  ">
       <div className="relative h-full  w-[20rem]  rounded-xl ">
-        <Image src={`/tags/${tag.url}`} fill alt={tag.title} className="rounded-xl" />
+        <Image
+          src={`/images/tags/${tag.url}`}
+          fill
+          alt={tag.title}
+          className="rounded-xl"
+        />
         <div
           id="content"
-          className="absolute flex items-center justify-center w-full h-full top-0 left-0 rounded-xl bg-black/70"
+          className="absolute left-0 top-0 flex h-full w-full items-center justify-center rounded-xl bg-black/70"
         >
-          <h1 className="text-white text-2xl sm:text-3xl w-full text-center font-medium">
+          <h1 className="w-full text-center text-2xl font-medium text-white sm:text-3xl">
             {tag.title}
           </h1>
         </div>
