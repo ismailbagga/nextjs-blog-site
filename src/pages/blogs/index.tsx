@@ -11,48 +11,10 @@ const stintUltra = Stint_Ultra_Condensed({
   variable: "--font-stint-ultra",
 });
 
-// const tags: Tag[] = [
-//   {
-//     title: "React Libary",
-//     slug: "react-libary",
-//     url: "react.png",
-//   },
-//   {
-//     title: "Java",
-//     slug: "java",
-//     url: "java.jpg",
-//   },
-//   {
-//     title: "Algorithmes & Data Structures",
-//     slug: "algorithmes",
-//     url: "algorithmes.webp",
-//   },
-//   {
-//     title: "Kotlin",
-//     slug: "kotlin",
-//     url: "kotlin.webp",
-//   },
-//   {
-//     title: "Tailwind Css",
-//     slug: "tailwind-css",
-//     url: "tailwindcss.png",
-//   },
-//   {
-//     title: "TypeScript",
-//     slug: "typeScript",
-//     url: "typescript.webp",
-//   },
-//   {
-//     title: "Spring Boot",
-//     slug: "Spring",
-//     imageName: "spring.jpg",
-//   },
-// ];
-
 export type CardBlog = Blog & {
-  TagsForArticle: (TagsForArticle & {
+  TagsForArticle: {
     Tag: Tag;
-  })[];
+  }[];
 };
 export const getStaticProps: GetStaticProps<{
   tags: Tag[];
@@ -70,7 +32,7 @@ export const getStaticProps: GetStaticProps<{
     },
     include: {
       TagsForArticle: {
-        include: {
+        select: {
           Tag: true,
         },
         where: {

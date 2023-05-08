@@ -29,20 +29,14 @@ const Nav = () => {
     <nav className="flex flex-col space-y-3 px-10 py-8">
       <div id="first-layer" className="flex  items-center">
         <Link href="/" className="flex items-center space-x-3">
-          <Image
-            className="rounded-full"
-            src={Logo}
-            alt="face"
-            height={60}
-            placeholder="blur"
-          />
+          <Image className="rounded-full" src={Logo} alt="face" height={60} placeholder="blur" />
           <h1 className="block font-dsf text-4xl">Ismail Bagga</h1>
         </Link>
         <ColorThemeBtn className="ml-auto" />
       </div>
       <div id="second-layer" className="flex items-center">
-        <NavLink href="blogs" text="Blogs" className="mr-3" />
-        <NavLink href="tags" text="Tags" />
+        <NavLink href="/blogs" text="Blogs" className="mr-3" />
+        <NavLink href="/tags" text="Tags" />
         <div className="ml-auto flex space-x-2">
           <NavLink href="https://twitter.com/bagga_ismail">
             <Image src={TwitterLogo} alt="Twitter Logo" height={32} />

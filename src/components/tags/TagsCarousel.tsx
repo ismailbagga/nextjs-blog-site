@@ -87,6 +87,7 @@ const customRightArrow = (
 const TagsCarousel: FC<{ tags: Tag[] }> = ({ tags }) => {
   return (
     <main className="mx-5 mt-10 ">
+      <h1 className="mb-6 pl-5 font-dsf text-8xl">Tags</h1>
       <Carousel
         responsive={responsive}
         customLeftArrow={customLeftArrow}
