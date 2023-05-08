@@ -56,7 +56,7 @@ const BlogCard: FC<{ blog: CardBlog }> = ({ blog }) => {
           <ReadingTime readingTime={blog.readingTime} />
         </div>
         <Link
-          href={"/"}
+          href={`/blogs/${blog.slug}`}
           className="mt-5 block w-fit  rounded bg-violet-900 px-3 py-2 text-white transition-colors hover:bg-violet-950"
         >
           Read More
