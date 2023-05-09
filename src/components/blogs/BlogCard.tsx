@@ -22,11 +22,14 @@ export type Blog = {
   tag: PartialTag;
 };
 
-const ReadingTime: FC<{ readingTime: number }> = ({ readingTime }) => {
+export const ReadingTime: FC<{ readingTime: number; className?: string }> = ({
+  readingTime,
+  className,
+}) => {
   return (
-    <div className="mt-3 flex items-center space-x-1">
-      <Image src={"/icons/book.png"} height={40} width={40} className="" alt="book" />
-      <h6 className=" text-sm">{readingTime} minutes read</h6>
+    <div className={` ${className} flex items-center space-x-1`}>
+      <Image src={"/icons/book.png"} height={30} width={30} className="" alt="book" />
+      <h6 className=" text-sm  font-blf block p-0 m-0">{readingTime} minutes read</h6>
     </div>
   );
 };
@@ -53,7 +56,7 @@ const BlogCard: FC<{ blog: CardBlog }> = ({ blog }) => {
         </p>
         <div className="mt-2 flex flex-wrap items-center  text-lg">
           {blog.TagsForArticle.length > 0 && <TagPill tag={blog.TagsForArticle[0].Tag} />}
-          <ReadingTime readingTime={blog.readingTime} />
+          <ReadingTime readingTime={blog.readingTime} className="mt-3  text-sm" />
         </div>
         <Link
           href={`/blogs/${blog.slug}`}

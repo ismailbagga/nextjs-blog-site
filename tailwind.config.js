@@ -20,8 +20,9 @@ module.exports = {
       fontFamily: {
         stf: ["var(--font-inter)", ...fontFamily.sans],
         dsf: ["var(--font-stint-ultra)", ...fontFamily.serif],
+        blf: ["var(--font-hack)", ...fontFamily.sans],
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
